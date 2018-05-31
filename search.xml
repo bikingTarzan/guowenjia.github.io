@@ -3,6 +3,25 @@
   
     
     <entry>
+      <title>2018-05-31 学习笔记</title>
+      <link href="/2018/05/31/2018-05-31-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2018/05/31/2018-05-31-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<h2 id="vim-相关的"><a href="#vim-相关的" class="headerlink" title="vim 相关的:"></a>vim 相关的:</h2><h3 id="vim命令行下的操作"><a href="#vim命令行下的操作" class="headerlink" title="vim命令行下的操作"></a>vim命令行下的操作</h3><p>每行的行首都添加一个字符串：%s/^/要插入的字符串<br>每行的行尾都添加一个字符串：%s/$/要插入的字符串</p><p>解释：</p><pre><code>% 代表针对被编辑文件的每一行进行后续操作$ 代表一行的结尾处^ 代表一行的开头处</code></pre><h3 id="命令行中的-Vi-模式"><a href="#命令行中的-Vi-模式" class="headerlink" title="命令行中的 Vi 模式"></a>命令行中的 Vi 模式</h3><p>Bash shell 提供了两种模式用于命令行编辑：emacs 和 vi。默认情况下是 Emacs 编辑模式，可以使用以下方式将其更改为 vi 模式：</p><pre><code>set -o vi</code></pre><p>在命令行中，可以按下 ESC 键进入 vi 编辑模式，并使用 vi 的单行编辑功能。在命令行中的 vi 编辑模式下，可以通过按下 v 弹出编辑器，这样就可以编辑和保存将在命令行中执行的缓冲。</p><p>如果需要回到 emacs 模式，输入：</p><pre><code>set -o emacs</code></pre><a id="more"></a><h3 id="多个文件中执行宏操作"><a href="#多个文件中执行宏操作" class="headerlink" title="多个文件中执行宏操作"></a>多个文件中执行宏操作</h3><p>我们已经录制好了一个宏，并且希望在多个文件中运行它。首先我们需要使用文件构建一个参数列表，例如，从一个 Rails 应用中加载所有模型：</p><pre><code>:args app/models/*.rb</code></pre><p>然后使用下面的命令运行宏（记录在寄存器 a 中）：</p><pre><code>:argdo normal @a</code></pre><p>最后，使用下面的命令保存所有的缓冲：</p><pre><code>:argdo update</code></pre><p><a href="https://zhuanlan.zhihu.com/p/27968721" target="_blank" rel="noopener">摘自知乎</a></p><h2 id="redis相关的"><a href="#redis相关的" class="headerlink" title="redis相关的:"></a>redis相关的:</h2><p>mset 同时设置一个或多个key-value对。<br>如果某个给定key已经存在，那么MSET会用新值覆盖旧值。<br>msetnx 和 mset相似，但是它只会对不存在key的设置，存在无法设置。</p><h3 id="mset用例-这里就好比python里的列表"><a href="#mset用例-这里就好比python里的列表" class="headerlink" title="mset用例(这里就好比python里的列表):"></a>mset用例(这里就好比python里的列表):</h3><pre><code>MSET date &quot;2012.3.30&quot; time &quot;11:00 a.m.&quot; weather &quot;sunny&quot;MGET date time weather1) &quot;2012.3.30&quot;2) &quot;11:00 a.m.&quot;3) &quot;sunny&quot;redis&gt; SET google &quot;google.hk&quot;OKredis&gt; MSET google &quot;google.com&quot;OKredis&gt; GET google&quot;google.com&quot;</code></pre><h3 id="msetnx用例-这里就好比python里的元组"><a href="#msetnx用例-这里就好比python里的元组" class="headerlink" title="msetnx用例(这里就好比python里的元组):"></a>msetnx用例(这里就好比python里的元组):</h3><pre><code>redis&gt; MSETNX rmdbs &quot;MySQL&quot; nosql &quot;MongoDB&quot; key-value-store &quot;redis&quot;(integer) 1redis&gt; MGET rmdbs nosql key-value-store1) &quot;MySQL&quot;2) &quot;MongoDB&quot;3) &quot;redis&quot;redis&gt; MSETNX rmdbs &quot;Sqlite&quot; language &quot;python&quot;  # rmdbs 键已经存在，操作失败(integer) 0redis&gt; EXISTS language                          # 因为 MSET 是原子性操作，language 没有被设置(integer) 0redis&gt; GET rmdbs                                # rmdbs 也没有被修改&quot;MySQL&quot;</code></pre><h2 id="git相关的"><a href="#git相关的" class="headerlink" title="git相关的:"></a>git相关的:</h2><pre><code>我经常出现代码改完了发现分支错了的情况，这种情况怎么解决?前提是尚未将修改提交到错误的分支.git stashgit checkout targetbranchgit stash popgit add .git commit -m xxx第一步:将修改的代码暂存到stash第二步:切换到正确的分支第三步:从stash中取出暂存的代码修改至此,对代码的改动，就由错误的分支移动到了正确的分支.把当前未提交到本地（和服务器）的代码推入到 Git 的栈中：$ git stash将以前存放的代码应用回来$ git stash apply 或者使用 $ git stash pop区别 pop 会删除栈里面数据 apply 会保留数据将当前的 Git 栈信息打印出来$ git stash list将你指定版本号为stash@{1}的工作取出来$ git stash apply stash@{1}将栈清空$ git stash clear</code></pre>]]></content>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> vim </tag>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>hexo搭建笔记</title>
       <link href="/2018/05/30/hexo%E6%90%AD%E5%BB%BA%E7%AC%94%E8%AE%B0/"/>
       <url>/2018/05/30/hexo%E6%90%AD%E5%BB%BA%E7%AC%94%E8%AE%B0/</url>
