@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>2018-06-05今日总结</title>
+      <link href="/2018/06/05/2018-06-05%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/"/>
+      <url>/2018/06/05/2018-06-05%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><pre><code>今天开始统计错误数量比较多的接口和时间比较长的接口，awk,grep 又重新复习了一遍。时间长都生疏了。粘贴一些有些遗忘的linux指令。$NF 最后一列把第一列相同的名称的第二列加起来：cat add   | awk &apos;{a[$1]+=$2}END{for(i in a) printf &quot;%s %d\n&quot;,i,a[i]}&apos;执行语句要加上`ls`数组名称不能有数字awk &apos;{}&apos; 这里必须是单引号split($7,a,&quot;?&quot;)grep -v &quot;100\|200&quot;  过滤掉这些 记得要转义shell脚本还得抽空再复习一下，时间长都有点生疏了。</code></pre><h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><pre><code>今天上午提交代码，感觉上没问题，也就没有测试，实际上是有问题的，bug改了好几次，影响线上用户了。这点做的特别不好。以后，及时是很简单的修改，也必须测试，拒绝眼高手低。</code></pre><h3 id="今日完成"><a href="#今日完成" class="headerlink" title="今日完成:"></a>今日完成:</h3><pre><code>修复发帖bug完成初步统计错误接口及不同接口时长统计</code></pre>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 反思 </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>2018-06-04今日总结</title>
       <link href="/2018/06/04/2018-06-04%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/"/>
       <url>/2018/06/04/2018-06-04%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/</url>
@@ -79,11 +96,11 @@
       
         <tags>
             
-            <tag> git </tag>
-            
             <tag> vim </tag>
             
             <tag> redis </tag>
+            
+            <tag> git </tag>
             
         </tags>
       
